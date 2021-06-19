@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Working with react in browser environment -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Contains all the code of react needed to build UI -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <!-- Contains code for React DOM and diffing algorithm(reconciliation algo) -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Babel transpiler link to add support for JSX (HTML + JS) mix -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Learning React in Browser</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // Functional Componenet
+        // function Hello(props) 
+        // Props destructured
+        function Hello({person="Sid", relative="default-value"}) {    
+            // console.log(props);
+            // relative = "nobody";
+            return (
+                // <>
+                // Only JSX allowed in return 
+                <React.Fragment>
+                    <h1>Hello {person}</h1>
+                    <h1>Hello {relative}</h1>
+                </React.Fragment>
+                // </>
+                // Angle bracket syntax is short for React.Fragment
+                // It is used to return multiple JSX elements
+                // Using a div is not preferred because if its not being used, then not good practice to include in code.
+            );
+        }
+
+
+        function Hellos() {
+            return (
+                <React.Fragment>
+                    <Hello person="Alexander" relative="everybody"/>
+                    <Hello person="Dumas"/>
+                    <Hello/>
+                    <Hello/>
+                </React.Fragment>
+            );
+        }
+
+        ReactDOM.render(<Hellos />, document.getElementById("root"));
+    </script>
+</body>
+
+</html>
+
+<!-- props is an object used to pass data from parent to child componenets -->
+
+
+<!-- List of things not allowed in JSX -->
+
+<!-- Looping through traditional for, while do while -->
+<!-- Variable declarataion -->
+<!-- Function declaration -->
+<!-- If condition, use ternary operator -->
+<!-- An object, use array instead -->
