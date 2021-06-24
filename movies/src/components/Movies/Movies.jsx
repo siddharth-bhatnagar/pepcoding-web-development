@@ -5,10 +5,41 @@ class Movies extends Component {
     constructor() {
         super();
         this.state = {
-            movies: getMovies()
+            movies: getMovies(),
+            currSearchText: ''
         }
     }
+
+    onDelete = (id) => {
+        let arr = this.state.movies.filter(function (moviesObj) {
+            return moviesObj._id !== id;
+        });
+
+        this.setState({
+            movies: arr
+        });
+    }
+
+    handleChange = (e) => {
+        let val = e.target.value;
+        this.setState({
+            currSearchText: val
+        })
+    }
+
     render() {
+        let {movies, currSearchText} = this.state;
+        let filteredArr = [];
+        if(currSearchText === '') {
+            filteredArr = movies;
+        }
+        else {
+            filteredArr = movies.filter(function(moviesObj) {
+                let title = moviesObj.title.toLowerCase();
+                return title.includes(currSearchText.toLowerCase());
+            });
+        }
+
         return (
             <div className='container'>
                 <div className='row'>
@@ -16,6 +47,7 @@ class Movies extends Component {
                         Hello
                     </div>
                     <div className='col-9'>
+                        <input type="text" value={this.state.currSearchText} onChange={this.handleChange} />
                         <table className="table">
                             <thead>
                                 <tr>
@@ -29,7 +61,7 @@ class Movies extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.movies.map((movieObj) => {
+                                    filteredArr.map((movieObj) => {
                                         return (
                                             <tr scope='row' key={movieObj._id} >
                                                 <td></td>
@@ -37,7 +69,7 @@ class Movies extends Component {
                                                 <td>{movieObj.genre.name}</td>
                                                 <td>{movieObj.numberInStock}</td>
                                                 <td>{movieObj.dailyRentalRate}</td>
-                                                <td><button type="button" className="btn btn-danger">Delete</button></td>
+                                                <td><button type="button" className="btn btn-danger" onClick={() => { this.onDelete(movieObj._id) }}>Delete</button></td>
                                             </tr>
                                         )
                                     })
