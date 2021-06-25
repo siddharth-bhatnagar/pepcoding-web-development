@@ -6,7 +6,9 @@ class Movies extends Component {
         super();
         this.state = {
             movies: getMovies(),
-            currSearchText: ''
+            currSearchText: '',
+            limit: 4,
+            currPage: 1
         }
     }
 
@@ -27,19 +29,71 @@ class Movies extends Component {
         })
     }
 
+    sortByStocks = (e) => {
+        let className = e.target.className;
+        let sortedArr = [];
+        if (className === 'fa fa-sort-asc') {
+            sortedArr = this.state.movies.sort((moviesObjA, moviesObjB) => {
+                return moviesObjA.numberInStock - moviesObjB.numberInStock;
+            });
+        } else {
+            sortedArr = this.state.movies.sort((moviesObjA, moviesObjB) => {
+                return moviesObjB.numberInStock - moviesObjA.numberInStock;
+            });
+        }
+
+        this.setState({
+            movies: sortedArr
+        })
+    }
+
+    sortByRatings = (e) => {
+        let className = e.target.className;
+        let sortedArr = [];
+        if (className === 'fa fa-sort-asc') {
+            sortedArr = this.state.movies.sort((moviesObjA, moviesObjB) => {
+                return moviesObjA.dailyRentalRate - moviesObjB.dailyRentalRate;
+            });
+        } else {
+            sortedArr = this.state.movies.sort((moviesObjA, moviesObjB) => {
+                return moviesObjB.dailyRentalRate - moviesObjA.dailyRentalRate;
+            });
+        }
+
+        this.setState({
+            movies: sortedArr
+        })
+    }
+
+    handlePageChange = (pageNumber) => {
+        this.setState({
+            currPage: pageNumber
+        });
+    }
+
     render() {
-        let {movies, currSearchText} = this.state;
+        let { movies, currSearchText, limit, currPage } = this.state;
         let filteredArr = [];
-        if(currSearchText === '') {
+        if (currSearchText === '') {
             filteredArr = movies;
         }
         else {
-            filteredArr = movies.filter(function(moviesObj) {
+            filteredArr = movies.filter(function (moviesObj) {
                 let title = moviesObj.title.toLowerCase();
                 return title.includes(currSearchText.toLowerCase());
             });
         }
+        let numberOfPages = Math.ceil(filteredArr.length / limit);
+        let pageNumberArr = [];
+        for (let i = 0; i < numberOfPages; i++) {
+            pageNumberArr.push(i + 1);
+        }
 
+        let si = (currPage - 1) * limit;
+        let ei = si + limit;
+        filteredArr = filteredArr.slice(si, ei);
+
+        
         return (
             <div className='container'>
                 <div className='row'>
@@ -54,8 +108,16 @@ class Movies extends Component {
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Genre</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Rate</th>
+                                    <th scope="col">
+                                        <i onClick={this.sortByStocks} className="fa fa-sort-asc" aria-hidden="true"></i>
+                                        Stock
+                                        <i onClick={this.sortByStocks} className="fa fa-sort-desc" aria-hidden="true"></i>
+                                    </th>
+                                    <th scope="col">
+                                        <i onClick={this.sortByRatings} className="fa fa-sort-asc" aria-hidden="true"></i>
+                                        Rate
+                                        <i onClick={this.sortByRatings} className="fa fa-sort-desc" aria-hidden="true"></i>
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -76,11 +138,22 @@ class Movies extends Component {
                                 }
                             </tbody>
                         </table>
+                        <ul className="pagination">
+                            {
+                                pageNumberArr.map((pageNumber) => {
+                                    let classStyle = pageNumber === currPage ? 'page-item active' : 'page-item';
+                                    return(
+                                        <li key={pageNumber} onClick={() => this.handlePageChange(pageNumber)} className={classStyle}><span className="page-link">{pageNumber}</span></li>
+                                    );
+                                })
+                            }
+                        </ul>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
 
 export default Movies;
+
