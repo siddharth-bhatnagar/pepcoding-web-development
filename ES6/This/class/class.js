@@ -11,11 +11,11 @@
 // }
 
 // let obj = new abc('Alexander');
-// // let obj2 = new abc('Tushar');
+// let obj2 = new abc('Tushar');
 // console.log(obj);
-// // console.log(obj2);
-// // let fn =obj.sayHi;
-// // fn();
+// console.log(obj2);
+// let fn =obj.sayHi;
+// fn();
 // //problem
 // let btn = document.querySelector('button');
 // btn.addEventListener('click',obj.sayHi);
@@ -58,12 +58,12 @@ class abc{
     }
 }
 
-// let obj = new abc('Alexander');
+let obj = new abc('Alexander');
 let obj2 = new abc('Tushar');
 console.log(obj2);
-// console.log(obj2);
-// let fn =obj.sayHi;
-// fn();
-//problem
+console.log(obj2);
+let fn =obj.sayHi;
+fn();
+// problem
 let btn = document.querySelector('button');
 btn.addEventListener('click',obj2.sayHi);

@@ -21,7 +21,7 @@
         // Functional Componenet
         // function Hello(props) 
         // Props destructured
-        function Hello({person="Sid", relative="default-value"}) {    
+        function Hello({person="default-name", relative="default-relative"}) {    
             // console.log(props);
             // relative = "nobody";
             return (
@@ -44,7 +44,6 @@
                 <React.Fragment>
                     <Hello person="Alexander" relative="everybody"/>
                     <Hello person="Dumas"/>
-                    <Hello/>
                     <Hello/>
                 </React.Fragment>
             );

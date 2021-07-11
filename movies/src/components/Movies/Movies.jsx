@@ -127,13 +127,13 @@ class Movies extends Component {
 
         return (
             <>
-                {this.state.movies.length === 0 ? <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                {this.state.movies.length === 0 ? <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div> :
                     <div className='container'>
                         <div className='row'>
                             <div className='col-3'>
-                                <ul class="list-group">
+                                <ul className="list-group">
                                     {
                                         genres.map((genreObj) => {
                                             let cs = genreObj.name === currGenre ? 'list-group-item active' : 'list-group-item';

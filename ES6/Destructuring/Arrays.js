@@ -1,4 +1,4 @@
-let introduction=['Hello','I','am','Tushar'];
+let introduction = ['Hello', 'I', 'am', 'Tushar'];
 // let greeting = introduction[0];
 // let pronoun = introduction[1];
 //traditional
@@ -18,7 +18,7 @@ let introduction=['Hello','I','am','Tushar'];
 // console.log(pronoun);
 // console.log(name);
 //////////////////////////////////giving default values
- 
+
 // let [greeting='hi',name='Tushar']=['hello'];
 // console.log(greeting);
 // console.log(name);
@@ -31,5 +31,5 @@ let introduction=['Hello','I','am','Tushar'];
 // console.log(b);
 
 //////query
-let[greeting]=introduction;
+let [greeting] = introduction;
 console.log(greeting);

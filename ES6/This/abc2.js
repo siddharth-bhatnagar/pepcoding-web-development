@@ -48,6 +48,7 @@ function fn()
     abc();
    
 }
+
 let obj = {
     person:'Tushar',
     func:fn
