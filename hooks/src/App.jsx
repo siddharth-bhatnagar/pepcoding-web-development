@@ -1,7 +1,8 @@
 import React from 'react'
-import UseState from './components/UseState/UseState';
-import UE3 from './components/UseEffect/UE3';
-import Cleanup from './components/UseEffect/Cleanup';
+// import UseState from './components/UseState/UseState';
+// import UE3 from './components/UseEffect/UE3';
+// import Cleanup from './components/UseEffect/Cleanup';
+import Main from './components/ContextAPI/Main';
 
 function App() {
     return (
@@ -9,7 +10,8 @@ function App() {
             {/* <UseState />
             <UE2/>      */}
             {/* <Infinite/>      */}
-            <Cleanup />
+            {/* <Cleanup /> */}
+            <Main />
         </div>
     )
 }
