@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import MyContext from './Context';
 import Demo from './Demo';
-import DemoChild from './DemoChild';
+// import DemoChild from './DemoChild';
 
 function Main() {
     console.log("Render Main"); // runs on every render
